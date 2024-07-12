@@ -1,0 +1,5 @@
+# ninja log v5
+21	542	7422334100459470	CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj	4404ef8ccd752752
+542	649	7422334101486849	01_HELLO_SDL.exe	377258dba3481e32
+25	55	0	CMakeFiles/install.util	500ac65cd1336fc
+22	737	7422344419914851	CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj	4404ef8ccd752752

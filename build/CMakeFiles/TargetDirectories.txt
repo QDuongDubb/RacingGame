@@ -1,0 +1,7 @@
+C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/build/CMakeFiles/01_HELLO_SDL.dir
+C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/build/CMakeFiles/edit_cache.dir
+C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/build/CMakeFiles/rebuild_cache.dir
+C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/build/CMakeFiles/list_install_components.dir
+C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/build/CMakeFiles/install.dir
+C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/build/CMakeFiles/install/local.dir
+C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/build/CMakeFiles/install/strip.dir
