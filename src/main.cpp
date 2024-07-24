@@ -1,6 +1,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <stdio.h>
+#include <SDL_mixer.h>
+#include <SDL_ttf.h>
 
 #include "RenderWindow.hpp"
 
@@ -17,6 +19,7 @@ int main(int argc, char* argv[]) {
     }
 
     RenderWindow window("Game v1.0", 800, 600);
+    SDL_Texture* backgroundTexture = window.loadTexture("res/background.png");
 
     bool gameRunning;
     SDL_Event event;
@@ -28,6 +31,10 @@ int main(int argc, char* argv[]) {
             {
                 gameRunning = false;
             }
+
+            window.clear();
+            window.render(backgroundTexture);
+            window.display();
         }
     }
     

@@ -32,3 +32,23 @@ void RenderWindow::cleanUp()
 {
     SDL_DestroyWindow(window);
 }
+
+SDL_Renderer* RenderWindow::getRenderer() const
+{
+    return renderer;
+}
+
+void RenderWindow::clear() 
+{
+    SDL_RenderClear(renderer);
+}
+
+void RenderWindow::render(SDL_Texture* p_tex)
+{
+    SDL_RenderCopy(renderer, p_tex, NULL, NULL);
+}
+
+void RenderWindow::display()
+{
+    SDL_RenderPresent(renderer);
+}

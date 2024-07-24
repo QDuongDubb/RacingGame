@@ -100,4 +100,6 @@ CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj: \
  C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2/SDL_image.h \
  C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2/SDL.h \
  c:\mingw\include\stdio.h \
+ C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2/SDL_mixer.h \
+ C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2/SDL_ttf.h \
  C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\RenderWindow.hpp
