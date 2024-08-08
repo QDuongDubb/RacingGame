@@ -3,10 +3,13 @@
 #include <stdio.h>
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
+#include <iostream>
+#include <cstdlib>
 
 #include "RenderWindow.hpp"
 #include "Entity.hpp"
 #include "player.hpp"
+
 using namespace std;
 
 int main(int argc, char* argv[]) {
@@ -20,15 +23,34 @@ int main(int argc, char* argv[]) {
     }
    
 
-    RenderWindow window("Game v1.0", 800, 600);
+    RenderWindow window("Game v1.0", 1086, 679);
     SDL_Texture* backgroundTexture = window.loadTexture("res/background.png");
 
-    SDL_Texture* playerCar = window.loadTexture("res/carOne.png");
-
+    SDL_Texture* textureCars[15];
+    textureCars[0] = window.loadTexture("res/carOne.png");
+    textureCars[1] = window.loadTexture("res/carTwo.png");
+    textureCars[2] = window.loadTexture("res/carThree.png");
+    textureCars[3] = window.loadTexture("res/carFour.png");
+    textureCars[4] = window.loadTexture("res/carFive.png");
+    textureCars[5] = window.loadTexture("res/carSix.png");
+    textureCars[6] = window.loadTexture("res/carSeven.png");
+    textureCars[7] = window.loadTexture("res/carEight.png");
+    textureCars[8] = window.loadTexture("res/carNine.png");
+    textureCars[9] = window.loadTexture("res/carTen.png");
+    textureCars[10] = window.loadTexture("res/carEleven.png");
+    textureCars[11] = window.loadTexture("res/carTwelve.png");
+    textureCars[12] = window.loadTexture("res/carThirteen.png");
+    textureCars[13] = window.loadTexture("res/carFourteen.png");
+    textureCars[14] = window.loadTexture("res/carFifteen.png");
+    textureCars[15]= window.loadTexture("res/carSixteen.png");
+    
     Player player;
-    player.setTexture(playerCar);
+    player.setTexture(textureCars[0]);
     player.setPlayerPosition(575, 500); 
     player.setCarState(Player::CarState::STOPPED);
+
+    int textureChoice = rand() % 8;
+
 
     bool gameRunning;
     SDL_Event event;
@@ -43,7 +65,10 @@ int main(int argc, char* argv[]) {
 
             window.clear();
             window.render(backgroundTexture);
-            window.render(playerCar);
+            
+            window.renderWithScale(textureCars[0], 575, 500, 100, 100);
+            
+            
             window.display();
         }
     }

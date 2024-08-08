@@ -30,7 +30,9 @@ SDL_Texture* RenderWindow::loadTexture(const char* p_filePath)
 
 void RenderWindow::cleanUp()
 {
+    SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    SDL_Quit();
 }
 
 SDL_Renderer* RenderWindow::getRenderer() const
@@ -48,6 +50,15 @@ void RenderWindow::render(SDL_Texture* p_tex)
     SDL_RenderCopy(renderer, p_tex, NULL, NULL);
 }
 
+void RenderWindow::renderWithScale(SDL_Texture* p_tex, int x, int y, int width, int height)
+{
+    SDL_Rect dest;
+    dest.x = x;
+    dest.y = y;
+    dest.w = width;
+    dest.h = height;
+    SDL_RenderCopy(renderer, p_tex, NULL, &dest);
+}
 void RenderWindow::display()
 {
     SDL_RenderPresent(renderer);

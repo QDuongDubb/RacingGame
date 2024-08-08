@@ -10,6 +10,7 @@ class RenderWindow
         SDL_Renderer* getRenderer() const;
         void clear();
         void render(SDL_Texture* p_tex);
+        void renderWithScale(SDL_Texture* p_tex, int x, int y, int width, int height);
         void display();
     private:
         SDL_Window* window;
