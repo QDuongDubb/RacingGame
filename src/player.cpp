@@ -1,4 +1,4 @@
-#include <player.h>
+#include "Player.hpp"
 
 int Player::getScore() {
     return m_PlayerScore;
@@ -20,6 +20,10 @@ void Player::setTexture(SDL_Renderer* renderer, const char* filePath) {
     }
     m_PlayerTexture = SDL_CreateTextureFromSurface(renderer, tempSurface);
     SDL_FreeSurface(tempSurface);
+}
+
+void Player::setTexture(SDL_Texture* texture) {
+    m_PlayerTexture = texture;
 }
 
 void Player::setCarState(CarState state) {

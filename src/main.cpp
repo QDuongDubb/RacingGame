@@ -5,7 +5,8 @@
 #include <SDL_ttf.h>
 
 #include "RenderWindow.hpp"
-
+#include "Entity.hpp"
+#include "player.hpp"
 using namespace std;
 
 int main(int argc, char* argv[]) {
@@ -17,9 +18,17 @@ int main(int argc, char* argv[]) {
         printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
         return 1;
     }
+   
 
     RenderWindow window("Game v1.0", 800, 600);
     SDL_Texture* backgroundTexture = window.loadTexture("res/background.png");
+
+    SDL_Texture* playerCar = window.loadTexture("res/carOne.png");
+
+    Player player;
+    player.setTexture(playerCar);
+    player.setPlayerPosition(575, 500); 
+    player.setCarState(Player::CarState::STOPPED);
 
     bool gameRunning;
     SDL_Event event;
@@ -34,10 +43,10 @@ int main(int argc, char* argv[]) {
 
             window.clear();
             window.render(backgroundTexture);
+            window.render(playerCar);
             window.display();
         }
     }
-    
 
     window.cleanUp();
     SDL_Quit();

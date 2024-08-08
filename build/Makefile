@@ -173,6 +173,30 @@ depend:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/build
 .PHONY : 01_HELLO_SDL/fast
 
+src/Entity.obj: src/Entity.cpp.obj
+.PHONY : src/Entity.obj
+
+# target to build an object file
+src/Entity.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/Entity.cpp.obj
+.PHONY : src/Entity.cpp.obj
+
+src/Entity.i: src/Entity.cpp.i
+.PHONY : src/Entity.i
+
+# target to preprocess a source file
+src/Entity.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/Entity.cpp.i
+.PHONY : src/Entity.cpp.i
+
+src/Entity.s: src/Entity.cpp.s
+.PHONY : src/Entity.s
+
+# target to generate assembly for a file
+src/Entity.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/Entity.cpp.s
+.PHONY : src/Entity.cpp.s
+
 src/RenderWindow.obj: src/RenderWindow.cpp.obj
 .PHONY : src/RenderWindow.obj
 
@@ -221,6 +245,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/player.obj: src/player.cpp.obj
+.PHONY : src/player.obj
+
+# target to build an object file
+src/player.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.obj
+.PHONY : src/player.cpp.obj
+
+src/player.i: src/player.cpp.i
+.PHONY : src/player.i
+
+# target to preprocess a source file
+src/player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.i
+.PHONY : src/player.cpp.i
+
+src/player.s: src/player.cpp.s
+.PHONY : src/player.s
+
+# target to generate assembly for a file
+src/player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.s
+.PHONY : src/player.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -234,12 +282,18 @@ help:
 	@echo ... list_install_components
 	@echo ... rebuild_cache
 	@echo ... 01_HELLO_SDL
+	@echo ... src/Entity.obj
+	@echo ... src/Entity.i
+	@echo ... src/Entity.s
 	@echo ... src/RenderWindow.obj
 	@echo ... src/RenderWindow.i
 	@echo ... src/RenderWindow.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
+	@echo ... src/player.obj
+	@echo ... src/player.i
+	@echo ... src/player.s
 .PHONY : help
 
 
