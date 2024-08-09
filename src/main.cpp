@@ -15,10 +15,6 @@ using namespace std;
 
 enum GameState { START, RUNNING, PAUSED, OVER };
 
-Uint32 previousTime = SDL_GetTicks();
-Uint32 currentTime = 0;
-float deltaTime = 0.0f;
-
 int main(int argc, char* argv[]) {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
@@ -54,6 +50,8 @@ int main(int argc, char* argv[]) {
     SDL_Texture* textureRoadStripe = window.loadTexture("res/roadStripe.png");
     SDL_Texture* textureRock = window.loadTexture("res/rock.png");
     SDL_Texture* textureTree = window.loadTexture("res/tree.png");
+
+    SDL_Texture* textureSpeedometer = window.loadTexture("res/speedometer.png");
     
     //Rock
     const int NumberOfRocks = 30;
@@ -121,13 +119,11 @@ int main(int argc, char* argv[]) {
     GameState gameState = GameState::START;
     bool gameRunning = true;
     SDL_Event event;
-    float gameSpeed = 0.0f;
+    float gameSpeed = 0.15f;
     const float MaxSpeed = 1100.0f;
 
     while (gameRunning)
     {
-        currentTime = SDL_GetTicks();
-        deltaTime = (currentTime - previousTime) / 1000.0f; 
         while (SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT)
@@ -152,7 +148,7 @@ int main(int argc, char* argv[]) {
                             player.setPlayerPosition(575, 500);
                             spriteNPC.x = (rand() % 345) + 344;
                             spriteNPC.y = (rand() % 1) - 2000;
-                            gameSpeed == 0.0f;
+                            gameSpeed == 0.00f;
                             player.setScore(0);
                             gameState = GameState::START;
                         }
@@ -160,7 +156,7 @@ int main(int argc, char* argv[]) {
                     case SDLK_ESCAPE:
                         gameRunning = false;
                         break;
-                    case SDLK_SPACE:
+                    case SDLK_UP:
                         if (gameState == GameState::RUNNING)
                         {
                             player.setCarState(Player::CarState::ACCELERATE);
@@ -170,8 +166,18 @@ int main(int argc, char* argv[]) {
                             }
                         }
                         break;
+                    case SDLK_DOWN:
+                        if (gameState == GameState::RUNNING)
+                        {
+                            player.setCarState(Player::CarState::DECELERATE);
+                            if (gameSpeed > 0.00f)
+                            {
+                                gameSpeed -= 0.55f;
+                            }
+                        }
+                        break;
                     case SDLK_RIGHT:
-                        if (player.getPlayerPosition().x < 615)
+                        if (player.getPlayerPosition().x < 630)
                         {
                         player.setPlayerPosition(player.getPlayerPosition().x + 5, player.getPlayerPosition().y);
                         }
@@ -191,89 +197,100 @@ int main(int argc, char* argv[]) {
 
         if (gameState == GameState::RUNNING)
         {
-            int testValue = 10 + 5; // Simple addition
-            std::cout << "The game is running. Test calculation: 10 + 5 = " << testValue << std::endl;
+            
+            spriteNPC.y += static_cast<int>(gameSpeed + 1);
             if(player.getCarState() == Player::CarState::ACCELERATE)
             {
             // Move the NPC car down the screen
-                spriteNPC.y += static_cast<int>(gameSpeed * deltaTime);
+                spriteNPC.y += static_cast<int>(gameSpeed + 0.3);
             }
             else if(player.getCarState() == Player::CarState::DECELERATE)
             {
                 if(spriteNPC.y > -1000)
                 {
-                    spriteNPC.y -= static_cast<int>(800 * deltaTime);
+                    spriteNPC.y -= static_cast<int>(gameSpeed - 0.3);
                 }
             }
 
             // Reset NPC car position and change texture if it moves off the screen
-            if(spriteNPC.y > 800)
+            if(spriteNPC.y > 700)
             {
                 spriteNPC.x = (rand() % 345) + 344;
                 spriteNPC.y = (rand() % 1) - 2000;
-
-                // Set a new texture for the NPC car
                 int textureChoice = rand() % 15;
-                // Increment player score
                 player.setScore(player.getScore() + 1);
             }
+
             //Update positions of road stripes
-            for (int i = 0; i < 5; i++)
+            for(int i = 0; i < 5; i++)
             {
-                spriteRoadStripe[i].y += static_cast<int>(gameSpeed * 0.016);
-                if (spriteRoadStripe[i].y > 679)
+                //spriteRoadStripe[i].y += static_cast<int>(gameSpeed * deltaTime);
+                spriteRoadStripe[i].y += 2;
+                if(spriteRoadStripe[i].y > 679)
                 {
                     spriteRoadStripe[i].y = -70;
                 }
             }
 
+
             //Update positions of rock and trees
-            for (int i = 0; i < NumberOfRocks; i++) 
+            for(int i = 0; i < NumberOfRocks; i++)
             {
-                spriteRock[i].y += static_cast<int>(gameSpeed * 0.016);  
-                if (spriteRock[i].y > 679) {
-                    if (i == 0) 
+                //spriteRock[i].y += static_cast<int>((gameSpeed / 1.5) * deltaTime);
+                spriteRock[i].y += 2.5;
+                if(spriteRock[i].y > 679)
+                {
+                    if(i == 0)
                     {
                         spriteRock[i].x = rand() % 280;
                         spriteRock[i].y = -1000;
-                    } else 
+                    }
+                    else
                     {
                         spriteRock[i].x = (rand() % 810) + 780;
-                        spriteRock[i].y = -500;
+                        spriteRock[i].y = -500; 
                     }
                 }
             }
 
-            for (int i = 0; i < NumberOfTrees; i++) 
+            for(int i = 0; i < NumberOfTrees; i++)
             {
-                spriteTree[i].y += static_cast<int>(gameSpeed * 0.016);
-                if (spriteTree[i].y > 679) {
-                    if (i % 2 == 0) 
+                spriteTree[i].y += 2.5;
+                if(spriteTree[i].y > 800)
+                {
+                    if(i == 0)
                     {
-                        spriteTree[i].x = rand() % 230;
-                        spriteTree[i].y = -500;
-                    } else 
+                        spriteTree[i].x = rand() % 280;
+                        spriteTree[i].y = -200; 
+                    }
+                    else
                     {
-                        spriteTree[i].x = (rand() % 810) + 780;
-                        spriteTree[i].y = -500;
+                        spriteTree[i].x = (rand() % 770) + 750;
+                        spriteTree[i].y = -200; 
                     }
                 }
             }
+
             //Move the NPC car and check fpr collisions
-            spriteNPC.y += static_cast<int>(gameSpeed * 0.016);
-            if (spriteNPC.y > 800)
-            {
-                spriteNPC.x = (rand() % 345) + 344;
-                spriteNPC.y = (rand() % 1) - 2000;
-                textureChoice = rand() % 15;
-                player.setScore(player.getScore() + 1);
-            }
-            SDL_Rect PlayerBounds = player.getPlayerPosition();
-            SDL_Rect npcBounds = {344, -2000, 50, 100}; 
-            if (SDL_HasIntersection(&PlayerBounds, &npcBounds))
+            // Get the player's bounding box
+            SDL_Rect playerBounds = player.getPlayerPosition();
+            SDL_Rect playerModBounds = {
+                playerBounds.x + 10,
+                playerBounds.y + 10,
+                40,
+                90
+            };
+
+            // Get the NPC's bounding box
+            SDL_Rect npcBounds = spriteNPC; 
+            // Check for collision
+            cout << spriteNPC.w << " " << spriteNPC.h << endl;
+            cout << playerModBounds.w << " " << playerModBounds.h << endl;
+            if (SDL_HasIntersection(&npcBounds, &playerModBounds))
             {
                 gameState = GameState::OVER;
             }
+
 
         }
 
@@ -297,10 +314,16 @@ int main(int argc, char* argv[]) {
 
         //Render player car
         SDL_Rect PlayerPos = player.getPlayerPosition();
-        window.renderWithScale(player.getTexture(), PlayerPos.x, PlayerPos.y, 100, 100);
+        window.renderWithScale(player.getTexture(), PlayerPos.x, PlayerPos.y, 50, 100);
         
         //Render NPC car
-        window.renderWithScale(textureCars[textureChoice], spriteNPC.x, spriteNPC.y, spriteNPC.w, spriteNPC.h);    
+        window.renderWithScale(textureCars[textureChoice], spriteNPC.x, spriteNPC.y, 50, 100); 
+
+        //Render Speedometer
+        window.renderWithScale(textureSpeedometer, spriteSpeedometerRect.x, spriteSpeedometerRect.y, spriteSpeedometerRect.w, spriteSpeedometerRect.h);
+        
+        //Render HUD
+        std::string scoreText = "Score: " + std::to_string(player.getScore());
             
         window.display();
     }
