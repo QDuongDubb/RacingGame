@@ -15,6 +15,10 @@ using namespace std;
 
 enum GameState { START, RUNNING, PAUSED, OVER };
 
+Uint32 previousTime = SDL_GetTicks();
+Uint32 currentTime = 0;
+float deltaTime = 0.0f;
+
 int main(int argc, char* argv[]) {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
@@ -100,12 +104,19 @@ int main(int argc, char* argv[]) {
     }
 
     //Player car
+    SDL_Texture* playerTexture = window.loadTexture("res/carOne.png");
     Player player;
-    player.setTexture(textureCars[0]);
+    player.setTexture(playerTexture);
     player.setPlayerPosition(575, 500); 
     player.setCarState(Player::CarState::STOPPED);
 
-    int textureChoice = rand() % 16;
+    //NPC car
+    SDL_Rect spriteNPC;
+    int textureChoice = rand() % 15;
+    spriteNPC = {(rand() % 345) + 344, (rand() % 1) - 2000, 50, 100};
+
+    //HUD
+    SDL_Rect spriteSpeedometerRect = { 840, 520, 150, 150 };
 
     GameState gameState = GameState::START;
     bool gameRunning = true;
@@ -115,6 +126,8 @@ int main(int argc, char* argv[]) {
 
     while (gameRunning)
     {
+        currentTime = SDL_GetTicks();
+        deltaTime = (currentTime - previousTime) / 1000.0f; 
         while (SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT)
@@ -126,27 +139,29 @@ int main(int argc, char* argv[]) {
                 switch (event.key.keysym.sym)
                 {
                     case SDLK_RETURN:
-                        if (gameState == START || gameState ==  PAUSED)
+                        if (gameState == GameState::START || gameState ==  GameState::PAUSED)
                         {
-                            gameState = RUNNING;
+                            gameState = GameState::RUNNING;
                         }
-                        else if (gameState == RUNNING)
+                        else if (gameState == GameState::RUNNING)
                         {
-                            gameState = PAUSED;
+                            gameState = GameState::PAUSED;
                         }
-                        else if (gameState == OVER)
+                        else if (gameState == GameState::OVER)
                         {
                             player.setPlayerPosition(575, 500);
+                            spriteNPC.x = (rand() % 345) + 344;
+                            spriteNPC.y = (rand() % 1) - 2000;
                             gameSpeed == 0.0f;
                             player.setScore(0);
-                            gameState = START;
+                            gameState = GameState::START;
                         }
                         break;
                     case SDLK_ESCAPE:
                         gameRunning = false;
                         break;
                     case SDLK_SPACE:
-                        if (gameState == RUNNING)
+                        if (gameState == GameState::RUNNING)
                         {
                             player.setCarState(Player::CarState::ACCELERATE);
                             if (gameSpeed < MaxSpeed)
@@ -155,71 +170,139 @@ int main(int argc, char* argv[]) {
                             }
                         }
                         break;
+                    case SDLK_RIGHT:
+                        if (player.getPlayerPosition().x < 615)
+                        {
+                        player.setPlayerPosition(player.getPlayerPosition().x + 5, player.getPlayerPosition().y);
+                        }
+                        break;
+                    case SDLK_LEFT:
+                        if (player.getPlayerPosition().x > 350)
+                        {
+                            player.setPlayerPosition(player.getPlayerPosition().x - 5, player.getPlayerPosition().y);
+                        }
+                        break;
+
                 }
             }
-            if (gameState == GameState::RUNNING)
+        }
+
+        const Uint8* state = SDL_GetKeyboardState(NULL);
+
+        if (gameState == GameState::RUNNING)
+        {
+            int testValue = 10 + 5; // Simple addition
+            std::cout << "The game is running. Test calculation: 10 + 5 = " << testValue << std::endl;
+            if(player.getCarState() == Player::CarState::ACCELERATE)
             {
-                //Update positions of rock and trees
-                for (int i = 0; i < NumberOfRocks; i++) 
+            // Move the NPC car down the screen
+                spriteNPC.y += static_cast<int>(gameSpeed * deltaTime);
+            }
+            else if(player.getCarState() == Player::CarState::DECELERATE)
+            {
+                if(spriteNPC.y > -1000)
                 {
-                    spriteRock[i].y += static_cast<int>(gameSpeed * 0.016);  
-                    if (spriteRock[i].y > 679) {
-                        if (i == 0) 
-                        {
-                            spriteRock[i].x = rand() % 280;
-                            spriteRock[i].y = -1000;
-                        } else 
-                        {
-                            spriteRock[i].x = (rand() % 810) + 780;
-                            spriteRock[i].y = -500;
-                        }
-                    }
+                    spriteNPC.y -= static_cast<int>(800 * deltaTime);
                 }
-
-                for (int i = 0; i < NumberOfTrees; i++) 
-                {
-                    spriteTree[i].y += static_cast<int>(gameSpeed * 0.016);
-                    if (spriteTree[i].y > 679) {
-                        if (i % 2 == 0) 
-                        {
-                            spriteTree[i].x = rand() % 230;
-                            spriteTree[i].y = -500;
-                        } else 
-                        {
-                            spriteTree[i].x = (rand() % 810) + 780;
-                            spriteTree[i].y = -500;
-                        }
-                    }
-                }
-
-                SDL_Rect PlayerBounds = player.getPlayerPosition();
-                SDL_Rect npcBounds = {344, -2000, 50, 100};
-                if (SDL_HasIntersection(&PlayerBounds, &npcBounds))
-                {
-                    gameState = OVER;
-                }
-
             }
 
-            window.clear();
-            window.render(backgroundTexture);
-            
-            //Render rocks and trees
+            // Reset NPC car position and change texture if it moves off the screen
+            if(spriteNPC.y > 800)
+            {
+                spriteNPC.x = (rand() % 345) + 344;
+                spriteNPC.y = (rand() % 1) - 2000;
+
+                // Set a new texture for the NPC car
+                int textureChoice = rand() % 15;
+                // Increment player score
+                player.setScore(player.getScore() + 1);
+            }
+            //Update positions of road stripes
+            for (int i = 0; i < 5; i++)
+            {
+                spriteRoadStripe[i].y += static_cast<int>(gameSpeed * 0.016);
+                if (spriteRoadStripe[i].y > 679)
+                {
+                    spriteRoadStripe[i].y = -70;
+                }
+            }
+
+            //Update positions of rock and trees
             for (int i = 0; i < NumberOfRocks; i++) 
             {
-                window.renderWithScale(textureRock, spriteRock[i].x, spriteRock[i].y, spriteRock[i].w, spriteRock[i].h);
-            }
-            for (int i = 0; i < NumberOfTrees; i++) 
-            {
-                window.renderWithScale(textureTree, spriteTree[i].x, spriteTree[i].y, spriteTree[i].w, spriteTree[i].h);
+                spriteRock[i].y += static_cast<int>(gameSpeed * 0.016);  
+                if (spriteRock[i].y > 679) {
+                    if (i == 0) 
+                    {
+                        spriteRock[i].x = rand() % 280;
+                        spriteRock[i].y = -1000;
+                    } else 
+                    {
+                        spriteRock[i].x = (rand() % 810) + 780;
+                        spriteRock[i].y = -500;
+                    }
+                }
             }
 
-            //Render player car
-            window.renderWithScale(textureCars[0], 575, 500, 100, 100);
-            
-            
-            window.display();
+            for (int i = 0; i < NumberOfTrees; i++) 
+            {
+                spriteTree[i].y += static_cast<int>(gameSpeed * 0.016);
+                if (spriteTree[i].y > 679) {
+                    if (i % 2 == 0) 
+                    {
+                        spriteTree[i].x = rand() % 230;
+                        spriteTree[i].y = -500;
+                    } else 
+                    {
+                        spriteTree[i].x = (rand() % 810) + 780;
+                        spriteTree[i].y = -500;
+                    }
+                }
+            }
+            //Move the NPC car and check fpr collisions
+            spriteNPC.y += static_cast<int>(gameSpeed * 0.016);
+            if (spriteNPC.y > 800)
+            {
+                spriteNPC.x = (rand() % 345) + 344;
+                spriteNPC.y = (rand() % 1) - 2000;
+                textureChoice = rand() % 15;
+                player.setScore(player.getScore() + 1);
+            }
+            SDL_Rect PlayerBounds = player.getPlayerPosition();
+            SDL_Rect npcBounds = {344, -2000, 50, 100}; 
+            if (SDL_HasIntersection(&PlayerBounds, &npcBounds))
+            {
+                gameState = GameState::OVER;
+            }
+
         }
+
+        window.clear();
+        window.render(backgroundTexture);
+        
+        //Render road stripes
+        for (int i = 0; i < 5; i++)
+        {
+            window.renderWithScale(textureRoadStripe, spriteRoadStripe[i].x, spriteRoadStripe[i].y, spriteRoadStripe[i].w, spriteRoadStripe[i].h);
+        }
+        //Render rocks and trees
+        for (int i = 0; i < NumberOfRocks; i++) 
+        {
+            window.renderWithScale(textureRock, spriteRock[i].x, spriteRock[i].y, spriteRock[i].w, spriteRock[i].h);
+        }
+        for (int i = 0; i < NumberOfTrees; i++) 
+        {
+            window.renderWithScale(textureTree, spriteTree[i].x, spriteTree[i].y, spriteTree[i].w, spriteTree[i].h);
+        }
+
+        //Render player car
+        SDL_Rect PlayerPos = player.getPlayerPosition();
+        window.renderWithScale(player.getTexture(), PlayerPos.x, PlayerPos.y, 100, 100);
+        
+        //Render NPC car
+        window.renderWithScale(textureCars[textureChoice], spriteNPC.x, spriteNPC.y, spriteNPC.w, spriteNPC.h);    
+            
+        window.display();
     }
 
     window.cleanUp();
