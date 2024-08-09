@@ -185,6 +185,7 @@ CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj: \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\bits\ostream.tcc \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\istream \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\bits\istream.tcc \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\ctime c:\mingw\include\time.h \
  C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\RenderWindow.hpp \
  C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\Entity.hpp \
  C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\player.hpp

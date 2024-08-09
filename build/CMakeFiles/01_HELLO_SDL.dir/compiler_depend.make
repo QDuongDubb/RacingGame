@@ -430,6 +430,7 @@ CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj: C:/Users/ADMIN/Desktop/LazyFoo/01_
   C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/cstdint \
   C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/cstdio \
   C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/cstdlib \
+  C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/ctime \
   C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/cwchar \
   C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/cwctype \
   C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/debug/assertions.h \
@@ -975,5 +976,7 @@ C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/type_traits:
 C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/main.cpp:
 
 C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/player.hpp:
+
+C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/ctime:
 
 C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/player.cpp:

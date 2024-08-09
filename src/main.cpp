@@ -5,6 +5,7 @@
 #include <SDL_ttf.h>
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 
 #include "RenderWindow.hpp"
 #include "Entity.hpp"
@@ -48,7 +49,57 @@ int main(int argc, char* argv[]) {
 
     SDL_Texture* textureRoadStripe = window.loadTexture("res/roadStripe.png");
     SDL_Texture* textureRock = window.loadTexture("res/rock.png");
+    SDL_Texture* textureTree = window.loadTexture("res/tree.png");
     
+    //Rock
+    const int NumberOfRocks = 30;
+    SDL_Rect spriteRock[NumberOfRocks];
+
+    for (int i = 0; i < NumberOfRocks; i++)
+    {
+        spriteRock[i].w = 100;
+        spriteRock[i].h = 70;
+        if (i == 0) 
+        {
+            spriteRock[i].x = rand() % 280;
+            spriteRock[i].y = (rand() % 900) - 1500;
+        } else
+        {
+            spriteRock[i].x = (rand() % 770) + 710;
+            spriteRock[i].y = (rand() % 900) - 900;
+        }
+    }
+
+    //Tree
+    const int NumberOfTrees = 20;
+    SDL_Rect spriteTree[NumberOfTrees];
+
+    for (int i = 0; i < NumberOfTrees; i++)
+    {
+        spriteTree[i].w = 90;  
+        spriteTree[i].h = 60;
+        if (i % 2 == 0) {
+            spriteTree[i].x = rand() % 230;
+            spriteTree[i].y = (rand() % 1000) - 500;
+        } else {
+            spriteTree[i].x = (rand() % 810) + 780;
+            spriteTree[i].y = (rand() % 1000) - 500;
+        }
+    }
+
+    //Road Stripes
+    SDL_Rect spriteRoad = {0, 0, 1086, 679};
+
+    SDL_Rect spriteRoadStripe[5];
+    for (int i = 0; i < 5; i++)
+    {
+        spriteRoadStripe[i].w = 10;
+        spriteRoadStripe[i].h = 50;
+        spriteRoadStripe[i].x = 538;
+        spriteRoadStripe[i].y = i * 150;
+    }
+
+    //Player car
     Player player;
     player.setTexture(textureCars[0]);
     player.setPlayerPosition(575, 500); 
@@ -106,8 +157,41 @@ int main(int argc, char* argv[]) {
                         break;
                 }
             }
-            if (gameState == RUNNING)
+            if (gameState == GameState::RUNNING)
             {
+                //Update positions of rock and trees
+                for (int i = 0; i < NumberOfRocks; i++) 
+                {
+                    spriteRock[i].y += static_cast<int>(gameSpeed * 0.016);  
+                    if (spriteRock[i].y > 679) {
+                        if (i == 0) 
+                        {
+                            spriteRock[i].x = rand() % 280;
+                            spriteRock[i].y = -1000;
+                        } else 
+                        {
+                            spriteRock[i].x = (rand() % 810) + 780;
+                            spriteRock[i].y = -500;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < NumberOfTrees; i++) 
+                {
+                    spriteTree[i].y += static_cast<int>(gameSpeed * 0.016);
+                    if (spriteTree[i].y > 679) {
+                        if (i % 2 == 0) 
+                        {
+                            spriteTree[i].x = rand() % 230;
+                            spriteTree[i].y = -500;
+                        } else 
+                        {
+                            spriteTree[i].x = (rand() % 810) + 780;
+                            spriteTree[i].y = -500;
+                        }
+                    }
+                }
+
                 SDL_Rect PlayerBounds = player.getPlayerPosition();
                 SDL_Rect npcBounds = {344, -2000, 50, 100};
                 if (SDL_HasIntersection(&PlayerBounds, &npcBounds))
@@ -120,6 +204,17 @@ int main(int argc, char* argv[]) {
             window.clear();
             window.render(backgroundTexture);
             
+            //Render rocks and trees
+            for (int i = 0; i < NumberOfRocks; i++) 
+            {
+                window.renderWithScale(textureRock, spriteRock[i].x, spriteRock[i].y, spriteRock[i].w, spriteRock[i].h);
+            }
+            for (int i = 0; i < NumberOfTrees; i++) 
+            {
+                window.renderWithScale(textureTree, spriteTree[i].x, spriteTree[i].y, spriteTree[i].w, spriteTree[i].h);
+            }
+
+            //Render player car
             window.renderWithScale(textureCars[0], 575, 500, 100, 100);
             
             
