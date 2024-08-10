@@ -43,6 +43,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.30.0/CMakeSystem.cmake"
   "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/cmake/FindSDL2.cmake"
   "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/cmake/FindSDL2_image.cmake"
+  "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/cmake/FindSDL2_mixer.cmake"
+  "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/cmake/FindSDL2_ttf.cmake"
   )
 
 # The corresponding makefile is:

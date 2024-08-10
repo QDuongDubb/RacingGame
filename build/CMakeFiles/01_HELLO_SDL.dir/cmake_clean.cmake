@@ -6,6 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/01_HELLO_SDL.dir/src/Entity.cpp.obj.d"
   "CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.obj"
   "CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.obj.d"
+  "CMakeFiles/01_HELLO_SDL.dir/src/TextRender.cpp.obj"
+  "CMakeFiles/01_HELLO_SDL.dir/src/TextRender.cpp.obj.d"
   "CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj"
   "CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj.d"
   "CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.obj"

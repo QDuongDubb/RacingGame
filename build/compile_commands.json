@@ -13,6 +13,12 @@
 },
 {
   "directory": "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/build",
+  "command": "C:\\MinGW\\bin\\g++.exe  @CMakeFiles/01_HELLO_SDL.dir/includes_CXX.rsp  -Wall -Wextra -pedantic -std=c++11  -Wall -Wextra -pedantic -std=c++11 -g -g -o CMakeFiles\\01_HELLO_SDL.dir\\src\\TextRender.cpp.obj -c C:\\Users\\ADMIN\\Desktop\\LazyFoo\\01_hello_SDL\\01_hello_SDL\\src\\TextRender.cpp",
+  "file": "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/TextRender.cpp",
+  "output": "CMakeFiles/01_HELLO_SDL.dir/src/TextRender.cpp.obj"
+},
+{
+  "directory": "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/build",
   "command": "C:\\MinGW\\bin\\g++.exe  @CMakeFiles/01_HELLO_SDL.dir/includes_CXX.rsp  -Wall -Wextra -pedantic -std=c++11  -Wall -Wextra -pedantic -std=c++11 -g -g -o CMakeFiles\\01_HELLO_SDL.dir\\src\\main.cpp.obj -c C:\\Users\\ADMIN\\Desktop\\LazyFoo\\01_hello_SDL\\01_hello_SDL\\src\\main.cpp",
   "file": "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/main.cpp",
   "output": "CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj"

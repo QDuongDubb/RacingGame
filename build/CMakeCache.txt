@@ -268,6 +268,27 @@ SDL2_INCLUDE_DIR:PATH=C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2
 //Where the SDL2 Library can be found
 SDL2_LIBRARY:STRING=mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2.dll.a
 
+//Path to a file.
+SDL2_MIXER_INCLUDE_DIR:PATH=C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2
+
+//Where the SDL2_mixer Library can be found
+SDL2_MIXER_LIBRARY:STRING=C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2_mixer.dll.a
+
+//Path to a file.
+SDL2_TTF_INCLUDE_DIR:PATH=C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2
+
+//Where the SDL2_ttf Library can be found
+SDL2_TTF_LIBRARY:STRING=C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2_ttf.dll.a
+
+//The directory containing a CMake configuration file for SDL2_t.
+SDL2_t_DIR:PATH=SDL2_t_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for SDL2_tt.
+SDL2_tt_DIR:PATH=SDL2_tt_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for SDL2_ttf.
+SDL2_ttf_DIR:PATH=C:/SDL2-2.30.5/i686-w64-mingw32/lib/cmake/SDL2_ttf
+
 
 ########################
 # INTERNAL cache entries
@@ -441,10 +462,16 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 FIND_PACKAGE_MESSAGE_DETAILS_SDL2:INTERNAL=[mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2.dll.a][C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2][v()]
 //Details about finding SDL2_IMAGE
 FIND_PACKAGE_MESSAGE_DETAILS_SDL2_IMAGE:INTERNAL=[C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2_image.dll.a][C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2][v()]
+//Details about finding SDL2_MIXER
+FIND_PACKAGE_MESSAGE_DETAILS_SDL2_MIXER:INTERNAL=[C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2_mixer.dll.a][C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2][v()]
+//Details about finding SDL2_TTF
+FIND_PACKAGE_MESSAGE_DETAILS_SDL2_TTF:INTERNAL=[C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2_ttf.dll.a][C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2][v()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 SDL2_IMAGE_LIBRARY_TEMP:INTERNAL=C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2_image.dll.a
-SDL2_LIBRARY_TEMP:INTERNAL=mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2.dll.a
+SDL2_LIBRARY_TEMP:INTERNAL=mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;mingw32;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2main.a;C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2.dll.a
+SDL2_MIXER_LIBRARY_TEMP:INTERNAL=C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2_mixer.dll.a
+SDL2_TTF_LIBRARY_TEMP:INTERNAL=C:/SDL2-2.30.5/i686-w64-mingw32/lib/libSDL2_ttf.dll.a
 //Result of TRY_COMPILE
 THREADS_HAVE_PTHREAD_ARG:INTERNAL=FALSE
 //linker supports push/pop state

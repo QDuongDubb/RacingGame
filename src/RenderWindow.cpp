@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <iostream>
 
 #include "RenderWindow.hpp"
@@ -27,6 +28,7 @@ SDL_Texture* RenderWindow::loadTexture(const char* p_filePath)
     }
     return texture;
 }
+
 
 void RenderWindow::cleanUp()
 {

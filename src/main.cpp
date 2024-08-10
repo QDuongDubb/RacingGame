@@ -10,6 +10,7 @@
 #include "RenderWindow.hpp"
 #include "Entity.hpp"
 #include "player.hpp"
+#include "TextRender.hpp"
 
 using namespace std;
 
@@ -24,10 +25,14 @@ int main(int argc, char* argv[]) {
         printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
         return 1;
     }
-
+    if (TTF_Init() < 0) {
+        printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+        return 1;
+    }
 
     RenderWindow window("Game v1.0", 1086, 679);
     SDL_Texture* backgroundTexture = window.loadTexture("res/background.png");
+    SDL_Renderer* renderer =window.getRenderer();
 
     SDL_Texture* textureCars[15];
     textureCars[0] = window.loadTexture("res/carOne.png");
@@ -56,7 +61,6 @@ int main(int argc, char* argv[]) {
     //Rock
     const int NumberOfRocks = 30;
     SDL_Rect spriteRock[NumberOfRocks];
-
     for (int i = 0; i < NumberOfRocks; i++)
     {
         spriteRock[i].w = 100;
@@ -75,7 +79,6 @@ int main(int argc, char* argv[]) {
     //Tree
     const int NumberOfTrees = 20;
     SDL_Rect spriteTree[NumberOfTrees];
-
     for (int i = 0; i < NumberOfTrees; i++)
     {
         spriteTree[i].w = 90;  
@@ -90,8 +93,6 @@ int main(int argc, char* argv[]) {
     }
 
     //Road Stripes
-    SDL_Rect spriteRoad = {0, 0, 1086, 679};
-
     SDL_Rect spriteRoadStripe[5];
     for (int i = 0; i < 5; i++)
     {
@@ -113,8 +114,23 @@ int main(int argc, char* argv[]) {
     int textureChoice = rand() % 15;
     spriteNPC = {(rand() % 345) + 344, (rand() % 1) - 2000, 50, 100};
 
-    //HUD
+    //Speedometer
     SDL_Rect spriteSpeedometerRect = { 840, 520, 150, 150 };
+    //Speedometer needle
+    SDL_Point needelePoints[4] = 
+    {
+        {915, 603},
+        {920, 673},
+        {910, 673},
+        {915, 603}
+    };
+
+    //Load Fonts
+    TTF_Font* font = TTF_OpenFont("fonts/Bungee-Regular.ttf", 28);
+    if (!font) {
+        printf("Failed to load font! SDL_ttf Error: %s\n", TTF_GetError());
+        return 1;
+    }
 
     GameState gameState = GameState::START;
     bool gameRunning = true;
@@ -177,23 +193,26 @@ int main(int argc, char* argv[]) {
                         }
                         break;
                     case SDLK_RIGHT:
-                        if (player.getPlayerPosition().x < 630)
+                        if (gameState == GameState::RUNNING)
                         {
-                        player.setPlayerPosition(player.getPlayerPosition().x + 5, player.getPlayerPosition().y);
+                            if (player.getPlayerPosition().x < 630)
+                            {
+                            player.setPlayerPosition(player.getPlayerPosition().x + 5, player.getPlayerPosition().y);
+                            }
+                            break;
                         }
-                        break;
                     case SDLK_LEFT:
-                        if (player.getPlayerPosition().x > 350)
+                        if (gameState == GameState::RUNNING)
                         {
-                            player.setPlayerPosition(player.getPlayerPosition().x - 5, player.getPlayerPosition().y);
-                        }
+                            if (player.getPlayerPosition().x > 350)
+                            {
+                                player.setPlayerPosition(player.getPlayerPosition().x - 5, player.getPlayerPosition().y);
+                            }
                         break;
-
+                        }
                 }
             }
         }
-
-        const Uint8* state = SDL_GetKeyboardState(NULL);
 
         if (gameState == GameState::RUNNING)
         {
@@ -217,7 +236,7 @@ int main(int argc, char* argv[]) {
             {
                 spriteNPC.x = (rand() % 345) + 344;
                 spriteNPC.y = (rand() % 1) - 2000;
-                int textureChoice = rand() % 15;
+                textureChoice = rand() % 15;
                 player.setScore(player.getScore() + 1);
             }
 
@@ -284,8 +303,6 @@ int main(int argc, char* argv[]) {
             // Get the NPC's bounding box
             SDL_Rect npcBounds = spriteNPC; 
             // Check for collision
-            cout << spriteNPC.w << " " << spriteNPC.h << endl;
-            cout << playerModBounds.w << " " << playerModBounds.h << endl;
             if (SDL_HasIntersection(&npcBounds, &playerModBounds))
             {
                 gameState = GameState::OVER;
@@ -295,6 +312,8 @@ int main(int argc, char* argv[]) {
         }
 
         window.clear();
+
+        //Render background
         window.render(backgroundTexture);
         
         //Render road stripes
@@ -302,6 +321,7 @@ int main(int argc, char* argv[]) {
         {
             window.renderWithScale(textureRoadStripe, spriteRoadStripe[i].x, spriteRoadStripe[i].y, spriteRoadStripe[i].w, spriteRoadStripe[i].h);
         }
+
         //Render rocks and trees
         for (int i = 0; i < NumberOfRocks; i++) 
         {
@@ -323,8 +343,17 @@ int main(int argc, char* argv[]) {
         window.renderWithScale(textureSpeedometer, spriteSpeedometerRect.x, spriteSpeedometerRect.y, spriteSpeedometerRect.w, spriteSpeedometerRect.h);
         
         //Render HUD
-        std::string scoreText = "Score: " + std::to_string(player.getScore());
-            
+        string scoreText = "Score: " + to_string(player.getScore());
+        SDL_Color White = {255, 255, 255};
+        SDL_Surface* HighScore = TTF_RenderText_Solid(font, scoreText.c_str(), White);
+        SDL_Texture* HighScoreTexture = SDL_CreateTextureFromSurface(renderer, HighScore);
+        SDL_Rect HighScoreRect = {10, 10, HighScore->w, HighScore->h};
+        SDL_RenderCopy(renderer, HighScoreTexture, NULL, &HighScoreRect);
+
+       
+    
+        
+
         window.display();
     }
 

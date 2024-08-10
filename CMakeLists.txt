@@ -25,13 +25,19 @@ endif()
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIR})
 
+
 find_package(SDL2_image REQUIRED)
 include_directories(${SDL2_IMAGE_INCLUDE_DIR})
 file(GLOB SRC_FILES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 # Install target is the same as before
+find_package(SDL2_ttf REQUIRED)
+include_directories(${SDL2_TTF_INCLUDE_DIR})
+
+find_package(SDL2_mixer REQUIRED)
+include_directories(${SDL2_MIXER_INCLUDE_DIR})
 
 # Look in the Lesson0 subdirectory to find its CMakeLists.txt so we can build the executable
 
 add_executable(01_HELLO_SDL ${SRC_FILES})
-target_link_libraries(01_HELLO_SDL ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY})
+target_link_libraries(01_HELLO_SDL ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY} ${SDL2_MIXER_LIBRARY})	
 install(TARGETS 01_HELLO_SDL RUNTIME DESTINATION ${BIN_DIR})

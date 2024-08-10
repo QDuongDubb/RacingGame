@@ -99,6 +99,7 @@ CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.obj: \
  C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2/SDL_misc.h \
  C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2/SDL_image.h \
  C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2/SDL.h \
+ C:/SDL2-2.30.5/i686-w64-mingw32/include/SDL2/SDL_ttf.h \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\iostream \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\ostream \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\ios \

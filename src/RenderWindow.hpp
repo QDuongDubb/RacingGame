@@ -6,6 +6,8 @@ class RenderWindow
     public:
         RenderWindow(const char* p_title, int p_w, int p_h);
         SDL_Texture* loadTexture(const char* p_filePath);
+
+        SDL_Texture* renderText(const char* message, const char* fontFlie, SDL_Color color, int fontSize);
         void cleanUp();
         SDL_Renderer* getRenderer() const;
         void clear();

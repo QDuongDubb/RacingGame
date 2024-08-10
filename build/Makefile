@@ -221,6 +221,30 @@ src/RenderWindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.s
 .PHONY : src/RenderWindow.cpp.s
 
+src/TextRender.obj: src/TextRender.cpp.obj
+.PHONY : src/TextRender.obj
+
+# target to build an object file
+src/TextRender.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/TextRender.cpp.obj
+.PHONY : src/TextRender.cpp.obj
+
+src/TextRender.i: src/TextRender.cpp.i
+.PHONY : src/TextRender.i
+
+# target to preprocess a source file
+src/TextRender.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/TextRender.cpp.i
+.PHONY : src/TextRender.cpp.i
+
+src/TextRender.s: src/TextRender.cpp.s
+.PHONY : src/TextRender.s
+
+# target to generate assembly for a file
+src/TextRender.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/TextRender.cpp.s
+.PHONY : src/TextRender.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -288,6 +312,9 @@ help:
 	@echo ... src/RenderWindow.obj
 	@echo ... src/RenderWindow.i
 	@echo ... src/RenderWindow.s
+	@echo ... src/TextRender.obj
+	@echo ... src/TextRender.i
+	@echo ... src/TextRender.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
