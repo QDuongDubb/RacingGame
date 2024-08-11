@@ -173,6 +173,54 @@ depend:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/build
 .PHONY : 01_HELLO_SDL/fast
 
+src/EventManager.obj: src/EventManager.cpp.obj
+.PHONY : src/EventManager.obj
+
+# target to build an object file
+src/EventManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.obj
+.PHONY : src/EventManager.cpp.obj
+
+src/EventManager.i: src/EventManager.cpp.i
+.PHONY : src/EventManager.i
+
+# target to preprocess a source file
+src/EventManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.i
+.PHONY : src/EventManager.cpp.i
+
+src/EventManager.s: src/EventManager.cpp.s
+.PHONY : src/EventManager.s
+
+# target to generate assembly for a file
+src/EventManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.s
+.PHONY : src/EventManager.cpp.s
+
+src/RenderText.obj: src/RenderText.cpp.obj
+.PHONY : src/RenderText.obj
+
+# target to build an object file
+src/RenderText.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.obj
+.PHONY : src/RenderText.cpp.obj
+
+src/RenderText.i: src/RenderText.cpp.i
+.PHONY : src/RenderText.i
+
+# target to preprocess a source file
+src/RenderText.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.i
+.PHONY : src/RenderText.cpp.i
+
+src/RenderText.s: src/RenderText.cpp.s
+.PHONY : src/RenderText.s
+
+# target to generate assembly for a file
+src/RenderText.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.s
+.PHONY : src/RenderText.cpp.s
+
 src/RenderWindow.obj: src/RenderWindow.cpp.obj
 .PHONY : src/RenderWindow.obj
 
@@ -258,6 +306,12 @@ help:
 	@echo ... list_install_components
 	@echo ... rebuild_cache
 	@echo ... 01_HELLO_SDL
+	@echo ... src/EventManager.obj
+	@echo ... src/EventManager.i
+	@echo ... src/EventManager.s
+	@echo ... src/RenderText.obj
+	@echo ... src/RenderText.i
+	@echo ... src/RenderText.s
 	@echo ... src/RenderWindow.obj
 	@echo ... src/RenderWindow.i
 	@echo ... src/RenderWindow.s

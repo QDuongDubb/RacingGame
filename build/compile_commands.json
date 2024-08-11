@@ -1,6 +1,18 @@
 [
 {
   "directory": "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/build",
+  "command": "C:\\MinGW\\bin\\g++.exe  @CMakeFiles/01_HELLO_SDL.dir/includes_CXX.rsp  -Wall -Wextra -pedantic -std=c++11  -Wall -Wextra -pedantic -std=c++11 -g -g -o CMakeFiles\\01_HELLO_SDL.dir\\src\\EventManager.cpp.obj -c C:\\Users\\ADMIN\\Desktop\\LazyFoo\\01_hello_SDL\\01_hello_SDL\\src\\EventManager.cpp",
+  "file": "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/EventManager.cpp",
+  "output": "CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.obj"
+},
+{
+  "directory": "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/build",
+  "command": "C:\\MinGW\\bin\\g++.exe  @CMakeFiles/01_HELLO_SDL.dir/includes_CXX.rsp  -Wall -Wextra -pedantic -std=c++11  -Wall -Wextra -pedantic -std=c++11 -g -g -o CMakeFiles\\01_HELLO_SDL.dir\\src\\RenderText.cpp.obj -c C:\\Users\\ADMIN\\Desktop\\LazyFoo\\01_hello_SDL\\01_hello_SDL\\src\\RenderText.cpp",
+  "file": "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/RenderText.cpp",
+  "output": "CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.obj"
+},
+{
+  "directory": "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/build",
   "command": "C:\\MinGW\\bin\\g++.exe  @CMakeFiles/01_HELLO_SDL.dir/includes_CXX.rsp  -Wall -Wextra -pedantic -std=c++11  -Wall -Wextra -pedantic -std=c++11 -g -g -o CMakeFiles\\01_HELLO_SDL.dir\\src\\RenderWindow.cpp.obj -c C:\\Users\\ADMIN\\Desktop\\LazyFoo\\01_hello_SDL\\01_hello_SDL\\src\\RenderWindow.cpp",
   "file": "C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/RenderWindow.cpp",
   "output": "CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.obj"

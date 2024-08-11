@@ -9,10 +9,12 @@
 
 #include "RenderWindow.hpp"
 #include "player.hpp"
+#include "RenderText.hpp"
+#include "EventManager.hpp"
 
 using namespace std;
 
-enum GameState { START, RUNNING, PAUSED, OVER };
+
 
 int main(int argc, char* argv[]) {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -30,7 +32,8 @@ int main(int argc, char* argv[]) {
 
     RenderWindow window("Game v1.0", 1086, 679);
     SDL_Texture* backgroundTexture = window.loadTexture("res/background.png");
-    SDL_Texture* menuTexture = window.loadTexture("res/image.png");
+    SDL_Texture* gameStartTexture = window.loadTexture("res/START.png");
+    SDL_Texture* gameOverTexture = window.loadTexture("res/OVER.png");
     SDL_Renderer* renderer =window.getRenderer();
 
     SDL_Texture* textureCars[15];
@@ -126,103 +129,29 @@ int main(int argc, char* argv[]) {
     };
 
     //Load Fonts
-    TTF_Font* font = TTF_OpenFont("fonts/Bungee-Regular.ttf", 28);
-    if (!font) {
-        printf("Failed to load font! SDL_ttf Error: %s\n", TTF_GetError());
+    TextRenderer textRenderer(renderer);
+    if (!textRenderer.loadFont("fonts/Bungee-Regular.ttf", 28)) 
+    {
         return 1;
     }
     string scoreText;
+    string liveText;
     SDL_Color White = {255, 255, 255};
-    SDL_Surface* HighScore;
-    SDL_Texture* HighScoreTexture;
-    SDL_Rect HighScoreRect;
 
     GameState gameState = GameState::START;
     bool gameRunning = true;
     SDL_Event event;
     float gameSpeed = 0.15f;
     const float MaxSpeed = 1100.0f;
+    int lives = 3;
 
     while (gameRunning)
     {
-        while (SDL_PollEvent(&event))
-        {
-            if (event.type == SDL_QUIT)
-            {
-                gameRunning = false;
-            }
-            else if (event.type == SDL_KEYDOWN)
-            {
-                switch (event.key.keysym.sym)
-                {
-                    case SDLK_RETURN:
-                        if (gameState == GameState::START || gameState ==  GameState::PAUSED)
-                        {
-                            printf("Transitioning to RUNNING state...\n");  // Debug
-                            gameState = GameState::RUNNING;
-                        }
-                        else if (gameState == GameState::RUNNING)
-                        {
-                            gameState = GameState::PAUSED;
-                        }
-                        else if (gameState == GameState::OVER)
-                        {
-                            player.setPlayerPosition(575, 500);
-                            spriteNPC.x = (rand() % 345) + 344;
-                            spriteNPC.y = (rand() % 1) - 2000;
-                            gameSpeed == 0.00f;
-                            player.setScore(0);
-                            gameState = GameState::START;
-                        }
-                        break;
-                    case SDLK_ESCAPE:
-                        gameRunning = false;
-                        break;
-                    case SDLK_UP:
-                        if (gameState == GameState::RUNNING)
-                        {
-                            player.setCarState(Player::CarState::ACCELERATE);
-                            if (gameSpeed < MaxSpeed)
-                            {
-                                gameSpeed += 0.55f;
-                            }
-                        }
-                        break;
-                    case SDLK_DOWN:
-                        if (gameState == GameState::RUNNING)
-                        {
-                            player.setCarState(Player::CarState::DECELERATE);
-                            if (gameSpeed > 0.00f)
-                            {
-                                gameSpeed -= 0.55f;
-                            }
-                        }
-                        break;
-                    case SDLK_RIGHT:
-                        if (gameState == GameState::RUNNING)
-                        {
-                            if (player.getPlayerPosition().x < 630)
-                            {
-                            player.setPlayerPosition(player.getPlayerPosition().x + 5, player.getPlayerPosition().y);
-                            }
-                            break;
-                        }
-                    case SDLK_LEFT:
-                        if (gameState == GameState::RUNNING)
-                        {
-                            if (player.getPlayerPosition().x > 350)
-                            {
-                                player.setPlayerPosition(player.getPlayerPosition().x - 5, player.getPlayerPosition().y);
-                            }
-                        break;
-                        }
-                }
-            }
-        }
+        EventManager eventManager;
+        eventManager.handleEvents(gameRunning, gameState, player, spriteNPC, gameSpeed, MaxSpeed);
 
         if (gameState == GameState::RUNNING)
         {
-            
             spriteNPC.y += static_cast<int>(gameSpeed + 1);
             if(player.getCarState() == Player::CarState::ACCELERATE)
             {
@@ -311,22 +240,17 @@ int main(int argc, char* argv[]) {
             // Check for collision
             if (SDL_HasIntersection(&npcBounds, &playerModBounds))
             {
-                gameState = GameState::OVER;
+                lives--;
+                if(lives <=0)
+                {
+                    gameState = GameState::OVER;
+                }
+                else
+                {
+                    gameState = GameState::FOULED;
+                }
             }
 
-
-        }
-        if(gameState == GameState::START)
-        {
-            window.clear();
-            window.render(menuTexture);
-            window.display();
-        }
-        
-
-        if(gameState == GameState::RUNNING)
-        {
-            printf("Game is in RUNNING state...\n");  // Debug
             window.clear();
             //Render background
             window.render(backgroundTexture); 
@@ -355,21 +279,40 @@ int main(int argc, char* argv[]) {
 
             // //Render Speedometer
             window.renderWithScale(textureSpeedometer, spriteSpeedometerRect.x, spriteSpeedometerRect.y, spriteSpeedometerRect.w, spriteSpeedometerRect.h);
-            
-            // //Render HUD
+
             scoreText = "Score: " + to_string(player.getScore());
-            White = {255, 255, 255};
-            
-            // SDL_FreeSurface(HighScore);
-            // SDL_DestroyTexture(HighScoreTexture);
-
-            HighScore = TTF_RenderText_Solid(font, scoreText.c_str(), White);
-            HighScoreTexture = SDL_CreateTextureFromSurface(renderer, HighScore);
-
-            HighScoreRect = {10, 10, HighScore->w, HighScore->h};
-            SDL_RenderCopy(renderer, HighScoreTexture, NULL, &HighScoreRect);
+            liveText = "Lives: " + to_string(lives);
+            textRenderer.renderText(scoreText, 10, 10, White);
+            textRenderer.renderText(liveText, 10, 40, White);
 
             window.display();
+
+
+        }
+        if(gameState == GameState::START)
+        {
+            window.clear();
+            window.render(gameStartTexture);
+            window.display();
+        }  
+        if (gameState == GameState::FOULED)
+        {
+            player.setPlayerPosition(575, 500);
+            spriteNPC.x = (rand() % 345) + 344;
+            spriteNPC.y = (rand() % 1) - 2000;
+            gameSpeed = 0.00f;
+            cout << lives << endl;
+        }
+        if(gameState == GameState::OVER)
+        {
+            window.clear();
+            window.render(gameOverTexture);
+            window.display();
+            player.setPlayerPosition(575, 500);
+            spriteNPC.x = (rand() % 345) + 344;
+            spriteNPC.y = (rand() % 1) - 2000;
+            gameSpeed = 0.00f;
+            player.setScore(0);
         }
     }
 
