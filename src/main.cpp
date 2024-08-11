@@ -8,9 +8,7 @@
 #include <ctime>
 
 #include "RenderWindow.hpp"
-#include "Entity.hpp"
 #include "player.hpp"
-#include "TextRender.hpp"
 
 using namespace std;
 
@@ -32,6 +30,7 @@ int main(int argc, char* argv[]) {
 
     RenderWindow window("Game v1.0", 1086, 679);
     SDL_Texture* backgroundTexture = window.loadTexture("res/background.png");
+    SDL_Texture* menuTexture = window.loadTexture("res/image.png");
     SDL_Renderer* renderer =window.getRenderer();
 
     SDL_Texture* textureCars[15];
@@ -105,6 +104,7 @@ int main(int argc, char* argv[]) {
     //Player car
     SDL_Texture* playerTexture = window.loadTexture("res/carOne.png");
     Player player;
+    SDL_Rect PlayerPos;
     player.setTexture(playerTexture);
     player.setPlayerPosition(575, 500); 
     player.setCarState(Player::CarState::STOPPED);
@@ -131,6 +131,11 @@ int main(int argc, char* argv[]) {
         printf("Failed to load font! SDL_ttf Error: %s\n", TTF_GetError());
         return 1;
     }
+    string scoreText;
+    SDL_Color White = {255, 255, 255};
+    SDL_Surface* HighScore;
+    SDL_Texture* HighScoreTexture;
+    SDL_Rect HighScoreRect;
 
     GameState gameState = GameState::START;
     bool gameRunning = true;
@@ -153,6 +158,7 @@ int main(int argc, char* argv[]) {
                     case SDLK_RETURN:
                         if (gameState == GameState::START || gameState ==  GameState::PAUSED)
                         {
+                            printf("Transitioning to RUNNING state...\n");  // Debug
                             gameState = GameState::RUNNING;
                         }
                         else if (gameState == GameState::RUNNING)
@@ -310,51 +316,61 @@ int main(int argc, char* argv[]) {
 
 
         }
-
-        window.clear();
-
-        //Render background
-        window.render(backgroundTexture);
-        
-        //Render road stripes
-        for (int i = 0; i < 5; i++)
+        if(gameState == GameState::START)
         {
-            window.renderWithScale(textureRoadStripe, spriteRoadStripe[i].x, spriteRoadStripe[i].y, spriteRoadStripe[i].w, spriteRoadStripe[i].h);
+            window.clear();
+            window.render(menuTexture);
+            window.display();
         }
+        
 
-        //Render rocks and trees
-        for (int i = 0; i < NumberOfRocks; i++) 
+        if(gameState == GameState::RUNNING)
         {
-            window.renderWithScale(textureRock, spriteRock[i].x, spriteRock[i].y, spriteRock[i].w, spriteRock[i].h);
+            printf("Game is in RUNNING state...\n");  // Debug
+            window.clear();
+            //Render background
+            window.render(backgroundTexture); 
+            //Render road stripes
+            for (int i = 0; i < 5; i++)
+            {
+                window.renderWithScale(textureRoadStripe, spriteRoadStripe[i].x, spriteRoadStripe[i].y, spriteRoadStripe[i].w, spriteRoadStripe[i].h);
+            }
+
+            // //Render rocks and trees
+            for (int i = 0; i < NumberOfRocks; i++) 
+            {
+                window.renderWithScale(textureRock, spriteRock[i].x, spriteRock[i].y, spriteRock[i].w, spriteRock[i].h);
+            }
+            for (int i = 0; i < NumberOfTrees; i++) 
+            {
+                window.renderWithScale(textureTree, spriteTree[i].x, spriteTree[i].y, spriteTree[i].w, spriteTree[i].h);
+            }
+
+            // //Render player car
+            PlayerPos = player.getPlayerPosition();
+            window.renderWithScale(player.getTexture(), PlayerPos.x, PlayerPos.y, 50, 100);
+            
+            // //Render NPC car
+            window.renderWithScale(textureCars[textureChoice], spriteNPC.x, spriteNPC.y, 50, 100); 
+
+            // //Render Speedometer
+            window.renderWithScale(textureSpeedometer, spriteSpeedometerRect.x, spriteSpeedometerRect.y, spriteSpeedometerRect.w, spriteSpeedometerRect.h);
+            
+            // //Render HUD
+            scoreText = "Score: " + to_string(player.getScore());
+            White = {255, 255, 255};
+            
+            // SDL_FreeSurface(HighScore);
+            // SDL_DestroyTexture(HighScoreTexture);
+
+            HighScore = TTF_RenderText_Solid(font, scoreText.c_str(), White);
+            HighScoreTexture = SDL_CreateTextureFromSurface(renderer, HighScore);
+
+            HighScoreRect = {10, 10, HighScore->w, HighScore->h};
+            SDL_RenderCopy(renderer, HighScoreTexture, NULL, &HighScoreRect);
+
+            window.display();
         }
-        for (int i = 0; i < NumberOfTrees; i++) 
-        {
-            window.renderWithScale(textureTree, spriteTree[i].x, spriteTree[i].y, spriteTree[i].w, spriteTree[i].h);
-        }
-
-        //Render player car
-        SDL_Rect PlayerPos = player.getPlayerPosition();
-        window.renderWithScale(player.getTexture(), PlayerPos.x, PlayerPos.y, 50, 100);
-        
-        //Render NPC car
-        window.renderWithScale(textureCars[textureChoice], spriteNPC.x, spriteNPC.y, 50, 100); 
-
-        //Render Speedometer
-        window.renderWithScale(textureSpeedometer, spriteSpeedometerRect.x, spriteSpeedometerRect.y, spriteSpeedometerRect.w, spriteSpeedometerRect.h);
-        
-        //Render HUD
-        string scoreText = "Score: " + to_string(player.getScore());
-        SDL_Color White = {255, 255, 255};
-        SDL_Surface* HighScore = TTF_RenderText_Solid(font, scoreText.c_str(), White);
-        SDL_Texture* HighScoreTexture = SDL_CreateTextureFromSurface(renderer, HighScore);
-        SDL_Rect HighScoreRect = {10, 10, HighScore->w, HighScore->h};
-        SDL_RenderCopy(renderer, HighScoreTexture, NULL, &HighScoreRect);
-
-       
-    
-        
-
-        window.display();
     }
 
     window.cleanUp();

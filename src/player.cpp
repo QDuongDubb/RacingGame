@@ -4,8 +4,16 @@ int Player::getScore() {
     return m_PlayerScore;
 }
 
+int Player::getLives() {
+    return m_Lives;
+}
+
 void Player::setScore(int score) {
     m_PlayerScore = score;
+}
+
+void Player::setLives(int lives) {
+    m_Lives = lives;
 }
 
 SDL_Texture* Player::getTexture() {
