@@ -189,4 +189,15 @@ CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj: \
  C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\RenderWindow.hpp \
  C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\player.hpp \
  C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\RenderText.hpp \
- C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\EventManager.hpp
+ C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\EventManager.hpp \
+ C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\AudioManager.hpp \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\map \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\bits\stl_tree.h \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\ext\aligned_buffer.h \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\bits\stl_map.h \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\tuple \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\utility \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\bits\stl_relops.h \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\array \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\bits\uses_allocator.h \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\bits\stl_multimap.h

@@ -11,13 +11,14 @@
 #include "player.hpp"
 #include "RenderText.hpp"
 #include "EventManager.hpp"
+#include "AudioManager.hpp"
 
 using namespace std;
 
 
 
 int main(int argc, char* argv[]) {
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         return 1;
     }
@@ -29,6 +30,13 @@ int main(int argc, char* argv[]) {
         printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
         return 1;
     }
+    
+    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+    {
+        printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+        return 1;
+    }
+    
 
     RenderWindow window("Mad Racer", 1086, 679);
     SDL_Texture* backgroundTexture = window.loadTexture("res/background.png");
@@ -146,6 +154,7 @@ int main(int argc, char* argv[]) {
     string liveText;
     SDL_Color White = {255, 255, 255};
     SDL_Color Pink = {255, 0, 255};
+    SDL_Color Cyan = {0, 255, 255};
 
     GameState gameState = GameState::START;
 
@@ -155,6 +164,13 @@ int main(int argc, char* argv[]) {
     const float MaxSpeed = 1100.0f;
     int lives = 3;
     string lastScoreString;
+    bool IsMusicPlaying = false;
+
+    //Audio Manager
+    AudioManager audioManager;
+    if (!audioManager.init()) {
+        return 1;
+    }
 
     while (gameRunning)
     {
@@ -163,7 +179,6 @@ int main(int argc, char* argv[]) {
 
         if (gameState == GameState::RUNNING)
         {
-            
             spriteNPC.y += static_cast<int>(npcSpeed);
             spriteGetPoint.y += static_cast<int>(gameSpeed + 1);
 
@@ -182,7 +197,7 @@ int main(int argc, char* argv[]) {
                 }
             }
 
-        // Reset NPC car position and change texture if it moves off the screen
+            // Reset NPC car position and change texture if it moves off the screen
             if(spriteNPC.y > 700)
             {   
                 spriteNPC.x = (rand() % 345) + 344;
@@ -323,14 +338,33 @@ int main(int argc, char* argv[]) {
 
             window.display();
 
-
+            if(!IsMusicPlaying)
+            {
+                audioManager.loadSoundEffect("carIdle","audio/CarIdle.wav");
+                audioManager.playSoundEffect("carIdle", -1);
+                IsMusicPlaying = true;
+            }
         }
+
         if(gameState == GameState::START)
         {
             window.clear();
             window.render(gameStartTexture);
             window.display();
+
+            if(!IsMusicPlaying)
+            {
+                audioManager.loadMusic("intro","audio/Intro.wav");
+                audioManager.playMusic("intro", -1);
+                IsMusicPlaying = true;
+            }
         }  
+        else if (IsMusicPlaying)  
+        {
+            audioManager.stopSoundEffect();
+            audioManager.stopMusic();  
+            IsMusicPlaying = false;    
+        }
         if (gameState == GameState::FOULED)
         {
             player.setPlayerPosition(575, 500);
@@ -344,6 +378,7 @@ int main(int argc, char* argv[]) {
         {
             lastScoreString = "Your Score: " + to_string(player.getScore());
             int textWidth, textHeight;
+            
             TTF_SizeText(textRenderer.getFont(), lastScoreString.c_str(), &textWidth, &textHeight);
 
             // Calculate the position to center the text
@@ -353,6 +388,7 @@ int main(int argc, char* argv[]) {
             window.clear();
             window.render(gameOverTexture);
             textRenderer.renderText(lastScoreString, centerX, centerY, Pink);
+            textRenderer.renderText(lastScoreString, centerX + 2, centerY + 2, Cyan);
             window.display();
             player.setPlayerPosition(575, 500);
             
@@ -365,6 +401,7 @@ int main(int argc, char* argv[]) {
         }
     }
 
+    audioManager.cleanUp();
     window.cleanUp();
     SDL_Quit();
 

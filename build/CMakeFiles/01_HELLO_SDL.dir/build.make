@@ -68,11 +68,26 @@ include CMakeFiles/01_HELLO_SDL.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/01_HELLO_SDL.dir/flags.make
 
+CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/flags.make
+CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/includes_CXX.rsp
+CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.obj: C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/AudioManager.cpp
+CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.obj"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.obj -MF CMakeFiles\01_HELLO_SDL.dir\src\AudioManager.cpp.obj.d -o CMakeFiles\01_HELLO_SDL.dir\src\AudioManager.cpp.obj -c C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\AudioManager.cpp
+
+CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.i"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\AudioManager.cpp > CMakeFiles\01_HELLO_SDL.dir\src\AudioManager.cpp.i
+
+CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.s"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\AudioManager.cpp -o CMakeFiles\01_HELLO_SDL.dir\src\AudioManager.cpp.s
+
 CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/flags.make
 CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/includes_CXX.rsp
 CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.obj: C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/EventManager.cpp
 CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.obj"
 	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.obj -MF CMakeFiles\01_HELLO_SDL.dir\src\EventManager.cpp.obj.d -o CMakeFiles\01_HELLO_SDL.dir\src\EventManager.cpp.obj -c C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\EventManager.cpp
 
 CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.i: cmake_force
@@ -87,7 +102,7 @@ CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/
 CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/includes_CXX.rsp
 CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.obj: C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/RenderText.cpp
 CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.obj"
 	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.obj -MF CMakeFiles\01_HELLO_SDL.dir\src\RenderText.cpp.obj.d -o CMakeFiles\01_HELLO_SDL.dir\src\RenderText.cpp.obj -c C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\RenderText.cpp
 
 CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.i: cmake_force
@@ -102,7 +117,7 @@ CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.obj: CMakeFiles/01_HELLO_SDL.di
 CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/includes_CXX.rsp
 CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.obj: C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/RenderWindow.cpp
 CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.obj"
 	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.obj -MF CMakeFiles\01_HELLO_SDL.dir\src\RenderWindow.cpp.obj.d -o CMakeFiles\01_HELLO_SDL.dir\src\RenderWindow.cpp.obj -c C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\RenderWindow.cpp
 
 CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.i: cmake_force
@@ -117,7 +132,7 @@ CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/flags.
 CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/includes_CXX.rsp
 CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj: C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/main.cpp
 CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj"
 	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.obj -MF CMakeFiles\01_HELLO_SDL.dir\src\main.cpp.obj.d -o CMakeFiles\01_HELLO_SDL.dir\src\main.cpp.obj -c C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\main.cpp
 
 CMakeFiles/01_HELLO_SDL.dir/src/main.cpp.i: cmake_force
@@ -132,7 +147,7 @@ CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/flag
 CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/includes_CXX.rsp
 CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.obj: C:/Users/ADMIN/Desktop/LazyFoo/01_hello_SDL/01_hello_SDL/src/player.cpp
 CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.obj: CMakeFiles/01_HELLO_SDL.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.obj"
 	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.obj -MF CMakeFiles\01_HELLO_SDL.dir\src\player.cpp.obj.d -o CMakeFiles\01_HELLO_SDL.dir\src\player.cpp.obj -c C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\src\player.cpp
 
 CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.i: cmake_force
@@ -145,6 +160,7 @@ CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.s: cmake_force
 
 # Object files for target 01_HELLO_SDL
 01_HELLO_SDL_OBJECTS = \
+"CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.obj" \
 "CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.obj" \
 "CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.obj" \
 "CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.obj" \
@@ -154,6 +170,7 @@ CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.s: cmake_force
 # External object files for target 01_HELLO_SDL
 01_HELLO_SDL_EXTERNAL_OBJECTS =
 
+01_HELLO_SDL.exe: CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.obj
 01_HELLO_SDL.exe: CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.obj
 01_HELLO_SDL.exe: CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.obj
 01_HELLO_SDL.exe: CMakeFiles/01_HELLO_SDL.dir/src/RenderWindow.cpp.obj
@@ -168,7 +185,7 @@ CMakeFiles/01_HELLO_SDL.dir/src/player.cpp.s: cmake_force
 01_HELLO_SDL.exe: CMakeFiles/01_HELLO_SDL.dir/linkLibs.rsp
 01_HELLO_SDL.exe: CMakeFiles/01_HELLO_SDL.dir/objects1.rsp
 01_HELLO_SDL.exe: CMakeFiles/01_HELLO_SDL.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable 01_HELLO_SDL.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\ADMIN\Desktop\LazyFoo\01_hello_SDL\01_hello_SDL\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable 01_HELLO_SDL.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\01_HELLO_SDL.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

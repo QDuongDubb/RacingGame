@@ -173,6 +173,30 @@ depend:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/build
 .PHONY : 01_HELLO_SDL/fast
 
+src/AudioManager.obj: src/AudioManager.cpp.obj
+.PHONY : src/AudioManager.obj
+
+# target to build an object file
+src/AudioManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.obj
+.PHONY : src/AudioManager.cpp.obj
+
+src/AudioManager.i: src/AudioManager.cpp.i
+.PHONY : src/AudioManager.i
+
+# target to preprocess a source file
+src/AudioManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.i
+.PHONY : src/AudioManager.cpp.i
+
+src/AudioManager.s: src/AudioManager.cpp.s
+.PHONY : src/AudioManager.s
+
+# target to generate assembly for a file
+src/AudioManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\01_HELLO_SDL.dir\build.make CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.s
+.PHONY : src/AudioManager.cpp.s
+
 src/EventManager.obj: src/EventManager.cpp.obj
 .PHONY : src/EventManager.obj
 
@@ -306,6 +330,9 @@ help:
 	@echo ... list_install_components
 	@echo ... rebuild_cache
 	@echo ... 01_HELLO_SDL
+	@echo ... src/AudioManager.obj
+	@echo ... src/AudioManager.i
+	@echo ... src/AudioManager.s
 	@echo ... src/EventManager.obj
 	@echo ... src/EventManager.i
 	@echo ... src/EventManager.s

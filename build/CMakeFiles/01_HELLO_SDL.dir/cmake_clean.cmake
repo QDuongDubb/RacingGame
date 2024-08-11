@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "01_HELLO_SDL.exe"
   "01_HELLO_SDL.exe.manifest"
   "01_HELLO_SDL.pdb"
+  "CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.obj"
+  "CMakeFiles/01_HELLO_SDL.dir/src/AudioManager.cpp.obj.d"
   "CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.obj"
   "CMakeFiles/01_HELLO_SDL.dir/src/EventManager.cpp.obj.d"
   "CMakeFiles/01_HELLO_SDL.dir/src/RenderText.cpp.obj"
