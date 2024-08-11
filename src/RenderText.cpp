@@ -38,3 +38,12 @@ void TextRenderer::setFontSize(int fontSize) {
     }
 }
 
+TTF_Font* TextRenderer::getFont() const {  // Add this method
+    return font;
+}
+
+int TextRenderer::getFontSize() const {
+    return fontSize;
+}
+
+

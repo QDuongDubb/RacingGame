@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    RenderWindow window("Game v1.0", 1086, 679);
+    RenderWindow window("Mad Racer", 1086, 679);
     SDL_Texture* backgroundTexture = window.loadTexture("res/background.png");
     SDL_Texture* gameStartTexture = window.loadTexture("res/START.png");
     SDL_Texture* gameOverTexture = window.loadTexture("res/OVER.png");
@@ -59,7 +59,10 @@ int main(int argc, char* argv[]) {
     SDL_Texture* textureTree = window.loadTexture("res/tree.png");
 
     SDL_Texture* textureSpeedometer = window.loadTexture("res/speedometer.png");
+
+    SDL_Texture* texturePlus10 = window.loadTexture("res/plus10.png");
     
+    SDL_Texture* playerTexture = window.loadTexture("res/carOne.png");
     //Rock
     const int NumberOfRocks = 30;
     SDL_Rect spriteRock[NumberOfRocks];
@@ -105,7 +108,7 @@ int main(int argc, char* argv[]) {
     }
 
     //Player car
-    SDL_Texture* playerTexture = window.loadTexture("res/carOne.png");
+    
     Player player;
     SDL_Rect PlayerPos;
     player.setTexture(playerTexture);
@@ -116,6 +119,11 @@ int main(int argc, char* argv[]) {
     SDL_Rect spriteNPC;
     int textureChoice = rand() % 15;
     spriteNPC = {(rand() % 345) + 344, (rand() % 1) - 2000, 50, 100};
+        
+
+    //GetPoint
+    SDL_Rect spriteGetPoint;
+    spriteGetPoint = {(rand() % 345) + 344, (rand() % 1) - 2000, 50, 100};
 
     //Speedometer
     SDL_Rect spriteSpeedometerRect = { 840, 520, 150, 150 };
@@ -137,42 +145,58 @@ int main(int argc, char* argv[]) {
     string scoreText;
     string liveText;
     SDL_Color White = {255, 255, 255};
+    SDL_Color Pink = {255, 0, 255};
 
     GameState gameState = GameState::START;
+
     bool gameRunning = true;
-    SDL_Event event;
     float gameSpeed = 0.15f;
+    float npcSpeed = 1;
     const float MaxSpeed = 1100.0f;
     int lives = 3;
+    string lastScoreString;
 
     while (gameRunning)
     {
         EventManager eventManager;
-        eventManager.handleEvents(gameRunning, gameState, player, spriteNPC, gameSpeed, MaxSpeed);
+        eventManager.handleEvents(gameRunning, gameState, player, gameSpeed, MaxSpeed);
 
         if (gameState == GameState::RUNNING)
         {
-            spriteNPC.y += static_cast<int>(gameSpeed + 1);
+            
+            spriteNPC.y += static_cast<int>(npcSpeed);
+            spriteGetPoint.y += static_cast<int>(gameSpeed + 1);
+
             if(player.getCarState() == Player::CarState::ACCELERATE)
             {
-            // Move the NPC car down the screen
-                spriteNPC.y += static_cast<int>(gameSpeed + 0.3);
+                // Move the NPC car down the screen
+                spriteNPC.y += static_cast<int>(npcSpeed * (gameSpeed + 0.1));
+                spriteGetPoint.y += static_cast<int>(gameSpeed + 0.3);
             }
             else if(player.getCarState() == Player::CarState::DECELERATE)
             {
                 if(spriteNPC.y > -1000)
                 {
-                    spriteNPC.y -= static_cast<int>(gameSpeed - 0.3);
+                    spriteNPC.y -= static_cast<int>(npcSpeed * (gameSpeed - 0.1));
+                    spriteGetPoint.y -= static_cast<int>(gameSpeed - 0.3);
                 }
             }
 
-            // Reset NPC car position and change texture if it moves off the screen
+        // Reset NPC car position and change texture if it moves off the screen
             if(spriteNPC.y > 700)
-            {
+            {   
                 spriteNPC.x = (rand() % 345) + 344;
                 spriteNPC.y = (rand() % 1) - 2000;
                 textureChoice = rand() % 15;
                 player.setScore(player.getScore() + 1);
+            }
+            
+
+            // Reset GetPoint position and change texture if it moves off the screen
+            if(spriteGetPoint.y > 700)
+            {
+                spriteGetPoint.x = (rand() % 345) + 344;
+                spriteGetPoint.y = (rand() % 1) - 2000;
             }
 
             //Update positions of road stripes
@@ -236,8 +260,8 @@ int main(int argc, char* argv[]) {
             };
 
             // Get the NPC's bounding box
-            SDL_Rect npcBounds = spriteNPC; 
-            // Check for collision
+            
+            SDL_Rect npcBounds = spriteNPC;
             if (SDL_HasIntersection(&npcBounds, &playerModBounds))
             {
                 lives--;
@@ -249,6 +273,14 @@ int main(int argc, char* argv[]) {
                 {
                     gameState = GameState::FOULED;
                 }
+            }
+            
+            SDL_Rect Point10Bounds = spriteGetPoint; 
+            if (SDL_HasIntersection(&Point10Bounds, &playerModBounds))
+            {
+                player.setScore(player.getScore() + 10);
+                spriteGetPoint.x = (rand() % 345) + 344;
+                spriteGetPoint.y = (rand() % 1) - 2000;
             }
 
             window.clear();
@@ -275,7 +307,11 @@ int main(int argc, char* argv[]) {
             window.renderWithScale(player.getTexture(), PlayerPos.x, PlayerPos.y, 50, 100);
             
             // //Render NPC car
+            
             window.renderWithScale(textureCars[textureChoice], spriteNPC.x, spriteNPC.y, 50, 100); 
+
+            // //Render GetPoint
+            window.renderWithScale(texturePlus10, spriteGetPoint.x, spriteGetPoint.y, 100, 100);
 
             // //Render Speedometer
             window.renderWithScale(textureSpeedometer, spriteSpeedometerRect.x, spriteSpeedometerRect.y, spriteSpeedometerRect.w, spriteSpeedometerRect.h);
@@ -300,19 +336,32 @@ int main(int argc, char* argv[]) {
             player.setPlayerPosition(575, 500);
             spriteNPC.x = (rand() % 345) + 344;
             spriteNPC.y = (rand() % 1) - 2000;
+            
             gameSpeed = 0.00f;
             cout << lives << endl;
         }
         if(gameState == GameState::OVER)
         {
+            lastScoreString = "Your Score: " + to_string(player.getScore());
+            int textWidth, textHeight;
+            TTF_SizeText(textRenderer.getFont(), lastScoreString.c_str(), &textWidth, &textHeight);
+
+            // Calculate the position to center the text
+            int centerX = (1086 / 2) - (textWidth / 2); 
+            int centerY = (679 / 2) - (textHeight / 2); 
+
             window.clear();
             window.render(gameOverTexture);
+            textRenderer.renderText(lastScoreString, centerX, centerY, Pink);
             window.display();
             player.setPlayerPosition(575, 500);
+            
+            
             spriteNPC.x = (rand() % 345) + 344;
             spriteNPC.y = (rand() % 1) - 2000;
+            
             gameSpeed = 0.00f;
-            player.setScore(0);
+            lives = 3;
         }
     }
 

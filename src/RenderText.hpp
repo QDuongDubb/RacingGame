@@ -13,6 +13,8 @@ public:
     bool loadFont(const std::string& fontPath, int fontSize);
     void renderText(const std::string& message, int x, int y, SDL_Color color);
     void setFontSize(int fontSize);
+    TTF_Font* getFont() const;
+    int getFontSize() const;
 
 private:
     SDL_Renderer* renderer;

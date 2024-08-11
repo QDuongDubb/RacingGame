@@ -9,7 +9,7 @@ enum class GameState { START, RUNNING, PAUSED, OVER, FOULED, };
 class EventManager {
 public:
     EventManager();
-    void handleEvents(bool& gameRunning, GameState& gameState, Player& player, SDL_Rect& spriteNPC, float& gameSpeed, const float MaxSpeed);
+    void handleEvents(bool& gameRunning, GameState& gameState, Player& player, float& gameSpeed, const float MaxSpeed);
 };
 
 #endif

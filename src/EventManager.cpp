@@ -1,8 +1,9 @@
 #include "EventManager.hpp"
+#include "player.hpp"
 
 EventManager::EventManager() {}
 
-void EventManager::handleEvents(bool& gameRunning, GameState& gameState, Player& player, SDL_Rect& spriteNPC, float& gameSpeed, const float MaxSpeed) {
+void EventManager::handleEvents(bool& gameRunning, GameState& gameState, Player& player, float& gameSpeed, const float MaxSpeed) {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT) {
@@ -19,6 +20,7 @@ void EventManager::handleEvents(bool& gameRunning, GameState& gameState, Player&
                     }
                     else if (gameState == GameState::OVER) {
                         gameState = GameState::START;
+                        player.setScore(0);
                     }
                     break;
                 case SDLK_ESCAPE:
