@@ -164,6 +164,7 @@ int main(int argc, char* argv[]) {
     const float MaxSpeed = 1100.0f;
     int lives = 3;
     string lastScoreString;
+    string LiveLost;
     bool IsMusicPlaying = false;
 
     //Audio Manager
@@ -337,13 +338,6 @@ int main(int argc, char* argv[]) {
             textRenderer.renderText(liveText, 10, 40, White);
 
             window.display();
-
-            if(!IsMusicPlaying)
-            {
-                audioManager.loadSoundEffect("carIdle","audio/CarIdle.wav");
-                audioManager.playSoundEffect("carIdle", -1);
-                IsMusicPlaying = true;
-            }
         }
 
         if(gameState == GameState::START)
@@ -361,7 +355,6 @@ int main(int argc, char* argv[]) {
         }  
         else if (IsMusicPlaying)  
         {
-            audioManager.stopSoundEffect();
             audioManager.stopMusic();  
             IsMusicPlaying = false;    
         }
@@ -370,20 +363,29 @@ int main(int argc, char* argv[]) {
             player.setPlayerPosition(575, 500);
             spriteNPC.x = (rand() % 345) + 344;
             spriteNPC.y = (rand() % 1) - 2000;
-            
+            LiveLost = "You lose a live !!";
+            int LiveLostWidth, LiveLostHeight;
+
+            TTF_SizeText(textRenderer.getFont(), LiveLost.c_str(), &LiveLostWidth, &LiveLostHeight);
+
+            int centerLiveLostX = (1086 / 2) - (LiveLostWidth / 2);
+            int centerLiveLostY = (679 / 2) - (LiveLostHeight / 2);
+            textRenderer.renderText(LiveLost, centerLiveLostX, centerLiveLostY, Pink);
+            textRenderer.renderText(LiveLost, centerLiveLostX + 2, centerLiveLostY + 2, Cyan);
+            window.display();
             gameSpeed = 0.00f;
             cout << lives << endl;
         }
         if(gameState == GameState::OVER)
         {
             lastScoreString = "Your Score: " + to_string(player.getScore());
-            int textWidth, textHeight;
+            int textWidthOver, textHeightOver;
             
-            TTF_SizeText(textRenderer.getFont(), lastScoreString.c_str(), &textWidth, &textHeight);
+            TTF_SizeText(textRenderer.getFont(), lastScoreString.c_str(), &textWidthOver, &textHeightOver);
 
             // Calculate the position to center the text
-            int centerX = (1086 / 2) - (textWidth / 2); 
-            int centerY = (679 / 2) - (textHeight / 2); 
+            int centerX = (1086 / 2) - (textWidthOver / 2); 
+            int centerY = (679 / 2) - (textHeightOver / 2); 
 
             window.clear();
             window.render(gameOverTexture);
