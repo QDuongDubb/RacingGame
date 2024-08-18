@@ -12,7 +12,8 @@ Mad Racer là một trò chơi đua xe vượt chướng ngại vật do mình t
 
 ## 1. Bắt đầu game
    - Hướng dẫn cách khởi động trò chơi.
-   [Start screen](build\res\START.png)
+   [Start screen](https://github.com/user-attachments/assets/2b749383-c6ff-4ea7-a4a8-d8cae519e8cb)
+
 
 ## 2. Chọn level
    - Hướng dẫn chọn màn chơi trong game.
