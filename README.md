@@ -56,7 +56,7 @@ Mad Racer là một trò chơi đua xe vượt chướng ngại vật do mình t
 
 3. **TẠM DỪNG**: Trò chơi vào trạng thái này khi người chơi tạm dừng trò chơi trong lúc đang chơi bằng cách nhấn `ENTER`. Nhấn `ENTER` lần nữa sẽ tiếp tục trò chơi.
 
-4. **PHẠM LỖI**: Trạng thái này được kích hoạt bởi các điều kiện trong trò chơi (không được chi tiết trong đoạn mã này). Nhấn `SPACE` sẽ đưa trò chơi về trạng thái CHẠY.
+4. **PHẠM LỖI**: Trạng thái này được kích hoạt khi người chơi mất 1 mạng nhưng chưa thua cuộc. Nhấn `SPACE` sẽ đưa trò chơi về trạng thái CHẠY.
 
 5. **KẾT THÚC**: Khi trò chơi kết thúc, nó sẽ vào trạng thái này. Người chơi có thể khởi động lại trò chơi bằng cách nhấn `ENTER`, điều này sẽ đặt lại điểm số về 0 và đưa trò chơi về trạng thái BẮT ĐẦU.
 
