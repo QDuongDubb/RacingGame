@@ -93,7 +93,17 @@ Mad Racer là một trò chơi đua xe vượt chướng ngại vật do mình t
 - Vị trí của xe người chơi được cập nhật dựa trên các phím mũi tên. Xe có thể di chuyển trong các giới hạn trên màn hình theo cả chiều ngang và chiều dọc, đảm bảo nó luôn nằm trong khu vực hiển thị của màn hình trò chơi.
 
 
-
+## Cấu trúc mã nguồn
+### Tài nguyên Game:
+- **build/res** : Chứa tài nguyên ảnh dành cho Game.
+- **build/audio**: Chứa tài nguyên âm thanh dành cho Game.
+- **build/fonts** : Chứa tài nguyên phông chữ dành cho Game.
+### Code của Game:
+- **src/AudioManage**:AudioManager là một lớp được thiết kế để quản lý âm thanh trong trò chơi, sử dụng thư viện SDL_mixer. Lớp này chịu trách nhiệm khởi tạo hệ thống âm thanh, tải các hiệu ứng âm thanh và nhạc nền từ tệp, phát âm thanh trong trò chơi, cũng như dọn dẹp tài nguyên khi không còn cần thiết.
+- **src/EventManager**: Đoạn mã này là phần triển khai của lớp EventManager, chịu trách nhiệm quản lý và xử lý các sự kiện trong trò chơi, chẳng hạn như các sự kiện bàn phím và sự kiện thoát chương trình. Lớp này giúp duy trì sự tương tác giữa người chơi và trò chơi, đảm bảo rằng các hành động của người chơi được phản ánh một cách chính xác trong trò chơi.
+- **src/main**: Đoạn mã này là phần chính của trò chơi đua xe được triển khai bằng SDL, SDL_image, SDL_mixer, và SDL_ttf. Đây là chương trình chính của trò chơi, xử lý toàn bộ vòng lặp trò chơi, bao gồm khởi tạo, tải tài nguyên, xử lý sự kiện, cập nhật trạng thái trò chơi và hiển thị các đối tượng trên màn hình.
+- **src/player**: Lớp Player này cung cấp các phương thức để quản lý các thông tin quan trọng của người chơi như điểm số, mạng sống, vị trí, kết cấu và trạng thái của xe. Điều này cho phép các phần khác của trò chơi dễ dàng tương tác với các thuộc tính của người chơi và điều chỉnh chúng khi cần thiết trong quá trình chơi.
+- **src/RenderWindow**: Lớp RenderWindow cung cấp các phương tiện cần thiết để quản lý cửa sổ và quá trình vẽ đồ họa trong một trò chơi SDL. Nó cho phép tải và hiển thị hình ảnh, quản lý cửa sổ và bộ hiển thị, và đảm bảo rằng tất cả các tài nguyên được giải phóng đúng cách khi trò chơi kết thúc.
 
 
 ## 6. Về đồ họa của game
