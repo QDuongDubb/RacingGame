@@ -106,9 +106,19 @@ Mad Racer là một trò chơi đua xe vượt chướng ngại vật do mình t
 - **src/RenderWindow**: Lớp RenderWindow cung cấp các phương tiện cần thiết để quản lý cửa sổ và quá trình vẽ đồ họa trong một trò chơi SDL. Nó cho phép tải và hiển thị hình ảnh, quản lý cửa sổ và bộ hiển thị, và đảm bảo rằng tất cả các tài nguyên được giải phóng đúng cách khi trò chơi kết thúc.
 
 
-## 6. Về đồ họa của game
-   - Mô tả phong cách đồ họa và thiết kế của game.
+## 6. Về đồ họa của Game
+   - Các loại xe được lấy từ nhà sáng tạo ChiffaProdaction ([@ChiffaProdaction](https://twitter.com/ChiffaProdaction)). Được cho phép tải xuống miễn phí bởi nhà sáng tạo trên trang [https://chiffaprodaction.itch.io/pixel-cars](https://chiffaprodaction.itch.io/pixel-cars)
+     ![wFwxsL](https://github.com/user-attachments/assets/faa1c64d-8efd-4412-805c-e7faa807722e)
 
-## 7. Về source code game
+   - Điểm PowerUp là ảnh "Stock Photos" được lấy miễn phí trên trang [https://www.shutterstock.com](https://www.shutterstock.com)
+     ![image](https://github.com/user-attachments/assets/abad1127-aa48-43d7-894a-3ed5c6a9a267)
+
+   - Ảnh cây là ảnh "Stock Photos" được lấy miễn phí trên trang [https://www.pngitem.com](https://www.pngitem.com)
+     ![tree](https://github.com/user-attachments/assets/1996aaa0-3a98-4d83-b60e-c4f979fc51b6)
+    - Ảnh đá là ảnh "Stock Photos" được lấy miễn phí trên trang [https://www.pngkit.com](https://www.pngkit.com/)
+     - Ảnh background được tạo thủ công trên phần mềm Paint
+         ![background](https://github.com/user-attachments/assets/61a1736e-e2de-4ae6-8513-125985a6e934)
+
+## 7. Về source code Game
    - Thông tin về mã nguồn, cách truy cập và sử dụng.
      
