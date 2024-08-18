@@ -7,8 +7,9 @@ Demo game và cấu trúc của code:
 Mad Racer là một trò chơi đua xe vượt chướng ngại vật do mình tự phát triển. Trong trò chơi này, bạn điều khiển một quái xế trên đường đua. Nhiệm vụ của bạn là tránh va chạm với các xe đua khác, ăn những vật phẩm tăng điểm và sống sớt càng lâu càng tốt !
 
 ## 0. Cách tải game
-   - **Cách 1:** Không bao gồm code.
-   - **Cách 2:** Bao gồm code và có thể biên dịch.
+   - Cài đặt các thư viện của SDL2, cụ thể là SDL, SDL_Image, SDL_ttf, SDL_mixer theo hướng dẫn sau [LazyFoo](https://lazyfoo.net/tutorials/SDL/01_hello_SDL/index.php).
+   - Clone code Game trên Github vào một thư mục trong máy.
+   - Mở thư mục bằng IDE của máy bạn, đảm bảo IDE này nhận thư viện SDL. Build đoạn code để chạy Game.
 
 ## 1. Cơ chế Game
    
@@ -107,7 +108,7 @@ Mad Racer là một trò chơi đua xe vượt chướng ngại vật do mình t
 
 
 ## 6. Về đồ họa của Game
-   - Các loại xe được lấy từ nhà sáng tạo ChiffaProdaction ([@ChiffaProdaction](https://twitter.com/ChiffaProdaction)). Được cho phép tải xuống miễn phí bởi nhà sáng tạo trên trang [https://chiffaprodaction.itch.io/pixel-cars](https://chiffaprodaction.itch.io/pixel-cars)
+   - Các loại xe được tạo bởi ChiffaProdaction ([@ChiffaProdaction](https://twitter.com/ChiffaProdaction)). Được cho phép tải xuống miễn phí bởi nhà sáng tạo trên trang [https://chiffaprodaction.itch.io/pixel-cars](https://chiffaprodaction.itch.io/pixel-cars)
      
      ![wFwxsL](https://github.com/user-attachments/assets/faa1c64d-8efd-4412-805c-e7faa807722e)
 
@@ -125,6 +126,7 @@ Mad Racer là một trò chơi đua xe vượt chướng ngại vật do mình t
    - Ảnh background được tạo thủ công trên phần mềm Paint
       ![background](https://github.com/user-attachments/assets/61a1736e-e2de-4ae6-8513-125985a6e934)
 
-## 7. Về source code Game
-   - Thông tin về mã nguồn, cách truy cập và sử dụng.
+## 7. Tham khảo khác:
+   - Hướng dẫn cài đặt thư viện SDL và cách xây dựng một tựa game: [LazyFoo](https://lazyfoo.net/tutorials/SDL/index.php)
+   - Ý tưởng Game: [RacingGame](https://www.youtube.com/watch?v=nZbLqcoet4I)
      
